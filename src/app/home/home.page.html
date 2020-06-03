@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Virtual + Infinite Scroll
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-list>
+    <ion-list-header>
+      Employee List
+    </ion-list-header>
+
+    <ion-virtual-scroll [items]="dataList">
+
+      <ion-item *virtualItem="let item">
+        <ion-avatar slot="start">
+          <img src="{{item.image}}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item.name}}</h2>
+          <h3>{{item.address}}</h3>
+          <p>{{item.intro}}</p>
+        </ion-label>
+      </ion-item>
+
+    </ion-virtual-scroll>
+
+  </ion-list>
+
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
